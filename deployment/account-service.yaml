@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-service
+  labels:
+    app: account-service
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: account-service
+  template:
+    metadata:
+      labels:
+        app: account-service
+        tier: account-service
+    spec:
+      containers:
+      - name: account-service
+        image: nerdulent/account-microservice:17
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 2222
+          name: account-service
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-service
+  labels:
+    app: account-service
+spec:
+  ports:
+    - port: 2222
+      targetPort: 5000
+  selector:
+    app: account-service
+    tier: account-service
+  type: LoadBalancer

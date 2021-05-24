@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-service
+  labels:
+    app: discovery-service
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: discovery-service
+  template:
+    metadata:
+      labels:
+        app: discovery-service
+        tier: discovery-service
+    spec:
+      containers:
+      - name: discovery-service
+        image: nerdulent/discovery-microservice:16
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8761
+          name: disc-svc-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-service
+  labels:
+    app: discovery-service
+spec:
+  ports:
+    - port: 8761
+      targetPort: 5000
+  selector:
+    app: discovery-service
+    tier: discovery-service
+  type: LoadBalancer

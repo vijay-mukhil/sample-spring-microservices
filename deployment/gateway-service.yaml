@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-service
+  labels:
+    app: gateway-service
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: gateway-service
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+        tier: gateway-service
+    spec:
+      containers:
+      - name: gateway-service
+        image: nerdulent/gateway-microservice:16
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8765
+          name: gateway-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+  labels:
+    app: gateway-service
+spec:
+  ports:
+    - port: 8765
+      targetPort: 5000
+  selector:
+    app: gateway-service
+    tier: gateway-service
+  type: LoadBalancer
