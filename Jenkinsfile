@@ -35,7 +35,7 @@ node() {
             docker build -t vijay666/gateway-microservice:${env.BUILD_NUMBER} .;
 
 	    cd $WORKSPACE/interaction-service;
-	    docker build -t vijay666/interaction-microservice:${env.BUILD_NUMBER};
+	    docker build -t vijay666/interaction-microservice:${env.BUILD_NUMBER} .;
         """
    }
    
