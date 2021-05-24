@@ -41,6 +41,7 @@
     </build>
 
     <modules>
+	<module>interaction-service</module>
         <module>discovery-service</module>
         <module>account-service</module>
         <module>gateway-service</module>
