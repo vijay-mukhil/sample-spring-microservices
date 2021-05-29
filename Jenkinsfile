@@ -4,7 +4,7 @@ node() {
         cleanWs();
       
         git url: 'git@github.com:jayram98/sample-spring-microservices.git', 
-        credentialsId: 'jayram98'
+        credentialsId: 'github-jenkins-keys'
    }
    
 
