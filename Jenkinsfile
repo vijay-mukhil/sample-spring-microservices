@@ -3,7 +3,8 @@ node() {
    stage('Checkout') {
         cleanWs();
       
-        git url: 'git@github.com:jayram98/sample-spring-microservices.git', 
+        git url: 'git@github.com:jayram98/sample-spring-microservices.git',
+	credentialsId: 'azure'	
         
    }
    
