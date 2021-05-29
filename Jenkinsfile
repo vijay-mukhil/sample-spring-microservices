@@ -23,24 +23,24 @@ node() {
    stage('Build Docker Images'){
         sh """
             cd $WORKSPACE/account-service; 
-            docker build -t vijay666/account-microservice:${env.BUILD_NUMBER} .;
+            docker build -t jay899/account-microservice:${env.BUILD_NUMBER} .;
 
 	    cd $WORKSPACE/interaction-service;
-	    docker build -t vijay666/interaction-microservice:${env.BUILD_NUMBER} .;
+	    docker build -t jay899/interaction-microservice:${env.BUILD_NUMBER} .;
         """
    }
    
    stage('Push Images to DockerHub'){
         sh """
-            docker push vijay666/account-microservice:${env.BUILD_NUMBER};
-	    docker push vijay666/interaction-microservice:${env.BUILD_NUMBER};
+            docker push jay899/account-microservice:${env.BUILD_NUMBER};
+	    docker push jay899/interaction-microservice:${env.BUILD_NUMBER};
         """
    }
    
-   stage('Deploy Microservices over GKE'){
+   stage('Deploy Microservices over AKS'){
        sh """
-            kubectl set image deployment/account-service account-service=vijay666/account-microservice:$BUILD_NUMBER
-             kubectl set image deployment/interaction-service interaction-service=vijay666/interaction-microservice:$BUILD_NUMBER
+            kubectl set image deployment/account-service account-service=jay899/account-microservice:$BUILD_NUMBER
+            kubectl set image deployment/interaction-service interaction-service=jay899/interaction-microservice:$BUILD_NUMBER
        """
    }
 }
