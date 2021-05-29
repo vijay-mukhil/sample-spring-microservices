@@ -4,7 +4,7 @@ node() {
         cleanWs();
       
         git url: 'git@github.com:jayram98/sample-spring-microservices.git',
-	credentialsId: 'azure'	
+	credentialsId: 'gitkey-azure'	
         
    }
    
