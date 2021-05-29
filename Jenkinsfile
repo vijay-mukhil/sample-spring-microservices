@@ -3,7 +3,7 @@ node() {
    stage('Checkout') {
         cleanWs();
       
-        git url: 'git@github.com:vijay-mukhil/sample-spring-microservices.git', 
+        git url: 'git@github.com:jayram98/sample-spring-microservices.git', 
         credentialsId: 'github-jenkins-keys'
    }
    
